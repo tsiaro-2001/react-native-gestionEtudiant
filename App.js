@@ -1,12 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, SafeAreaView, StyleSheet, Alert, Text, View } from 'react-native';
 
 export default function App() {
+  const handlePress = () => {
+    console.log('texte cliker');
+  }
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <SafeAreaView style={styles.container}>
+      <Text onPress={handlePress}>App with my best!</Text>
+      <SafeAreaView>
+        <Button title='Add' color="orange" onPress={() => Alert.alert("Informations", "Button appuyer", [
+          {text: "Yes", onPress: () => console.log("Yes")},
+          {text: "How"},
+          {text: "No"},
+        ])} />
+      </SafeAreaView>
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 

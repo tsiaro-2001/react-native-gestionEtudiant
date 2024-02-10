@@ -1,14 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import Home from './Components/Home';
+import Menu from './Components/Menu';
+import Welcome from './Components/Welcome';
 
 export default function App() {
   
   return (
-    <View style={{backgroundColor: "red", flex:1, flexDirection:'row'}}>
-      <View style={{backgroundColor: "dodgerblue", flex:2}} />
-      <View style={{backgroundColor: "orange", flex:1}} />
-      <View style={{backgroundColor: "red", flex:1}} />
-    </View>
+    // <Home />
+    // <Menu />
+    <Welcome />
   );
 }
 

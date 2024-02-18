@@ -1,11 +1,31 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { FlatList, StyleSheet, View } from 'react-native'
 import Card from './Card'
+
+const produits = [
+  {
+    title: 'Jacket',
+    subTitle: '100$',
+    image: require('../assets/jacket.jpg') 
+  },
+  {
+    title: 'Chaise',
+    subTitle: '100$',
+    image: require('../assets/couch.jpg') 
+  },
+]
 
 const Acceuil = () => {
   return (
     <View style={styles.container} >
-        <Card title='Jacket' subTitle='100$' image='chair.jpg' />
+      <FlatList
+       data={produits}
+       keyExtractor={it => it.title}
+       renderItem={({item}) => 
+        <Card title={item.title} subTitle={item.subTitle} image={item.image} />
+      }
+      />
+        {/* <Card title='Jacket' subTitle='100$' image={require('../assets/jacket.jpg')} /> */}
     </View>
   )
 }

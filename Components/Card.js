@@ -6,7 +6,7 @@ const Card = ({title, subTitle, image}) => {
    
   return (
     <View style={styles.cardContainer}>
-        <Image style={styles.image} source={require('../assets/jacket.jpg')} />
+        <Image style={styles.image} source={image} />
         <View style={styles.detailsCont}>
             <Text style={styles.texte}>{title}</Text>
             <Text style={[styles.texte, {color: 'blue'}]}>{subTitle}</Text>

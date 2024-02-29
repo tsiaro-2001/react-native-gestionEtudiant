@@ -35,7 +35,6 @@ const LoginScreen = () => {
                          {/* <ErrorMessage error={errors.email} /> */}
                        <ErrorMessage visible={touched.email}>{errors.email}</ErrorMessage>
                         <AppTextInput 
-                            onbl
                             onChangeText={handleChange('password')}
                             placeholder={'passwords'}
                             onBlur={() => setFieldTouched('password')}

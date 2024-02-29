@@ -15,25 +15,23 @@ const AppPicker = ({placeholder, nameIcon, categories}) => {
  <>
      <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
         <View style={styles.container}>
-            {nameIcon && <Icon size={30} color={colors.light} backgroundColor={colors.primary} name={nameIcon}/>}  
+            {nameIcon && <Icon size={30} color={colors.primary} backgroundColor={colors.light} name={nameIcon}/>}  
             <AppText style={styles.texte}>
                 {titre}
             </AppText>
-            <Icon size={30} color={colors.light} backgroundColor={colors.primary} name={'chevron-down'} /> 
+            <Icon size={30} color={colors.primary} backgroundColor={colors.light} name={'chevron-down'} /> 
 
         </View>
      </TouchableWithoutFeedback>   
-     
-     <Modal animationType='slide' visible={modalVisible}>
-        <Screen>     
-            <Button title='Close' onPress={() => setModalVisible(false)}/>
+     {modalVisible &&  <View style={styles.subContainer}>     
+            {/* <Button title='Close' onPress={() => setModalVisible(false)}/> */}
             <FlatList
                 data={categories} 
                 keyExtractor={it => it.value.toString()}
                 renderItem={({item}) => <PickerItem label={item.titre} onPress={() => {setTitre(item.titre); setModalVisible(false)} } /> }
             />  
-        </Screen>
-     </Modal>
+        </View> } 
+     
  </>
            
 )}
@@ -42,13 +40,20 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     padding: 10,
-    backgroundColor: colors.danger,
+    backgroundColor: colors.light,
     borderRadius: 20,
     margin: 10
   },
+  subContainer: {
+    padding: 10,
+    backgroundColor: colors.light,
+    borderRadius: 20,
+    // margin: 10,
+    marginHorizontal: 10
+  },
   texte: {
     flex: 1,
-    color: colors.light
+    color: colors.medium,
   },
   input: {
     color: colors.light,

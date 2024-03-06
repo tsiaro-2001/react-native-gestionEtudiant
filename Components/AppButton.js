@@ -14,7 +14,7 @@ const AppButton = ({children, color = 'primary' ,onPress}) => {
 
 const styles = StyleSheet.create({
   btn: {
-    backgroundColor: colors.primary,
+    // backgroundColor: colors.primary,
     alignItems:'center',
     justifyContent: 'center',
     padding: 15,

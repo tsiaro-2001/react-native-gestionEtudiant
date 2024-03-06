@@ -1,17 +1,18 @@
 import React from 'react'
 import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native'
 import AppButton from './AppButton'
+import colors from '../config/colors'
 
-const Welcome = () => {
+const Welcome = ({navigation}) => {
   return (
-    <ImageBackground style={styles.background} source={require('../assets/background.jpg')} >
+    <ImageBackground style={styles.background} source={require('../assets/Work_7.jpg')} >
         <View style={styles.logoContainer}>
-            <Image style={styles.logo} source={require('../assets/logo-red.png')} />
+            {/* <Image style={styles.logo} source={require('../assets/logo.webp')} /> */}
             <Text style={styles.tagLine}>Welcome in my app</Text>
         </View>
         <View style={styles.btnContainer}>
-          <AppButton onPress={() => console.log('hello')}>Se connecter</AppButton>
-          <AppButton>S'inscrire</AppButton>
+          <AppButton  onPress={() => navigation.navigate('Login')}>Se connecter</AppButton>
+          <AppButton >S'inscrire</AppButton>
         </View>
     </ImageBackground>
   )
@@ -24,9 +25,10 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     tagLine: {
-      fontSize: 15,
+      fontSize: 18,
       fontWeight: 'bold',
-      paddingVertical: 5
+      paddingVertical: 5,
+      color: '#9091FE'
     },
     btnContainer: {
       padding: 20,

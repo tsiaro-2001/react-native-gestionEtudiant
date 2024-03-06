@@ -13,12 +13,12 @@ const validationSchma = Yup.object().shape({
   password: Yup.string().required().min(4)
 })
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
   
   return (
     <Screen style={styles.container}>
-        <Image style={styles.image} source={require('../assets/logo-red.png')}/>
-        <Formik validationSchema={validationSchma} initialValues={{email: '', password:''}} onSubmit={(values) => console.log(values)}>
+        <Image style={styles.image} source={require('../assets/logo.webp')}/>
+        <Formik validationSchema={validationSchma} initialValues={{email: '', password:''}} onSubmit={(values) => { console.log(values); navigation.navigate('Etudiant') } }>
             {
                 ({handleChange, handleSubmit, errors, setFieldTouched, touched}) => (
                     <>
@@ -27,10 +27,11 @@ const LoginScreen = () => {
                             placeholder={'email'}  
                             onBlur={() => setFieldTouched('email')}
                             nameIcon={'email'}
-                            autoCapitalize='none'
-                            autoCorrect={false}
+                            // autoCapitalize='none'
+                            // autoCorrect={false}
                             keyboardType='email-address'
-                            textContentType='emailAddress'
+                            // keyboardType='numeric'
+                            // textContentType='emailAddress'
                         />
                          {/* <ErrorMessage error={errors.email} /> */}
                        <ErrorMessage visible={touched.email}>{errors.email}</ErrorMessage>

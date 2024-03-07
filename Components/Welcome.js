@@ -5,9 +5,9 @@ import colors from '../config/colors'
 
 const Welcome = ({navigation}) => {
   return (
-    <ImageBackground style={styles.background} source={require('../assets/Work_7.jpg')} >
+    <ImageBackground style={styles.background} source={require('../assets/background.jpg')} >
         <View style={styles.logoContainer}>
-            {/* <Image style={styles.logo} source={require('../assets/logo.webp')} /> */}
+            <Image style={styles.logo} source={require('../assets/logo-red.png')} />
             <Text style={styles.tagLine}>Welcome in my app</Text>
         </View>
         <View style={styles.btnContainer}>

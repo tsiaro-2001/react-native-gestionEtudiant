@@ -17,7 +17,7 @@ const LoginScreen = ({navigation}) => {
   
   return (
     <Screen style={styles.container}>
-        <Image style={styles.image} source={require('../assets/logo.webp')}/>
+        <Image style={styles.image} source={require('../assets/logo-red.png')}/>
         <Formik validationSchema={validationSchma} initialValues={{email: '', password:''}} onSubmit={(values) => { console.log(values); navigation.navigate('Etudiant') } }>
             {
                 ({handleChange, handleSubmit, errors, setFieldTouched, touched}) => (

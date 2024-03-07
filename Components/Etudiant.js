@@ -7,6 +7,7 @@ import ListItemDelete from './ListItemDelete';
 import axios from 'axios';
 import ListItemUpdate from './ListItemUpdate';
 import colors from '../config/colors';
+import api from '../api/api';
 
 const TableHeader = () => {
     return (
@@ -27,8 +28,6 @@ const Etudiant = ({navigation}) => {
   const [total, setTotal] = useState(0)
   const [val , setval] = useState({})
 
- 
-
 
   useEffect(() => {
     loadingData();
@@ -36,7 +35,7 @@ const Etudiant = ({navigation}) => {
   }, [min]);
 
   const loadingData = async () => {
-    const response = await axios.get('http://192.168.43.112:5000/api/getEtudiant');
+    const response = await axios.get(`${api.url}/getEtudiant`);
     setEt(response.data);
     console.log(et);
 
@@ -47,7 +46,7 @@ const Etudiant = ({navigation}) => {
     let totalBourse = 0;
 
     for (const item of et) {
-    totalBourse += item.bourse;
+      totalBourse += item.bourse;
     }
     setMin(minBourse)
     setMax(maxBourse)
@@ -62,7 +61,7 @@ const Etudiant = ({navigation}) => {
   const handleDelete = (item) => {
     Alert.alert("Attention", "Voulez vous supprimer", [
         {text: "Yes", onPress: () => { 
-            axios.delete(`http://192.168.43.112:5000/api/delete/${item.matricule}`)
+            axios.delete(`${api.url}/delete/${item.matricule}`)
             const updatedEt = et.pop()
             setEt(updatedEt)
             navigation.push('Etudiant')
@@ -72,7 +71,6 @@ const Etudiant = ({navigation}) => {
     
   };
 
- 
 
   const handleEdit = (item) => {
     // Handle the edit action for the item
@@ -129,9 +127,9 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     fontWeight: 'bold',
-   fontSize: 20,
-   color: colors.light,
-   backgroundColor: colors.primary,
+    fontSize: 20,
+    color: colors.light,
+    backgroundColor: colors.primary,
 
     
   },
@@ -144,7 +142,7 @@ const styles = StyleSheet.create({
   textcalcul: {
     padding: 1,
     marginLeft: 10,
-   fontSize: 15
+    fontSize: 15
     
   },
 });

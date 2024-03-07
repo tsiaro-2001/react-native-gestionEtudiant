@@ -10,6 +10,7 @@ import Screen from './Screen'
 import AppPicker from './AppPicker'
 import axios from 'axios'
 import AppText from './AppText/AppText'
+import api from '../api/api'
 
 
 const validationSchema = Yup.object().shape({
@@ -27,7 +28,7 @@ const categories = [
 const PostEtudiant = ({navigation}) => {
   return (
     <Screen style={styles.container}>
-         <Formik
+      <Formik
       validationSchema={validationSchema}
       initialValues={{ matricule: '', nom: '', prenom: '', bourse: 0 }}
       onSubmit={(values, { setSubmitting, resetForm }) => {
@@ -36,7 +37,7 @@ const PostEtudiant = ({navigation}) => {
 
         // Send POST request using Axios
         axios
-          .post('http://192.168.43.112:5000/api/post', values)
+          .post(`${api.url}/post`, values)
           .then((response) => {
             console.log('Data submitted successfully:', response.data);
 
@@ -98,7 +99,6 @@ const PostEtudiant = ({navigation}) => {
                         <ErrorMessage visible={touched.bourse}>{errors.bourse}</ErrorMessage>
                       
                         
-                       
                        {/* <AppPicker onChangeText={handleChange('categorie')}  placeholder={'Catégories'} nameIcon='email' categories={categories} /> */}
 
                         <AppButton onPress={handleSubmit}>POST</AppButton>
@@ -108,7 +108,6 @@ const PostEtudiant = ({navigation}) => {
             }
         </Formik>
     </Screen>
-         
   )
 }
 

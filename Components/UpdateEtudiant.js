@@ -8,6 +8,7 @@ import AppButton from './AppButton'
 import { StyleSheet } from 'react-native'
 import Screen from './Screen'
 import axios from 'axios'
+import api from '../api/api'
 
 const validationSchema = Yup.object().shape({
     matricule: Yup.string().required(),
@@ -20,33 +21,29 @@ const validationSchema = Yup.object().shape({
 const UpdateEtudiant = ({item, navigation, route}) => {
   return (
     <Screen style={styles.container}>
-         <Formik
-      validationSchema={validationSchema}
-      initialValues={{ matricule: '', nom: '', prenom: '', bourse: 0 }}
-      onSubmit={(values, { setSubmitting, resetForm }) => {
-        // Prevent default form submission
-        setSubmitting(true);
-        console.log(route.params.matricule);
-        //Send update request using Axios
-        
-        axios.put(`http://192.168.43.112:5000/api/update/${values.matricule}`, values).then((response) => {
-            console.log('Data submitted successfully:', response.data);
-            console.log(values.matricule);
-
-            // Handle any additional actions after successful submission
-          })
-          .catch((error) => {
-            console.error('Error submitting data:', error);
-            // Handle any error conditions here
-          })
-          .finally(() => {
-            setSubmitting(false);
-            navigation.push('Etudiant')
-          });
-    
-     }  
-    }
-    >
+        <Formik
+            validationSchema={validationSchema}
+            initialValues={{ matricule: '', nom: '', prenom: '', bourse: 0 }}
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+                // Prevent default form submission
+                setSubmitting(true);
+                console.log(route.params.matricule);
+                //Send update request using Axios
+                
+                axios.put(`${api.url}/update/${values.matricule}`, values).then((response) => {
+                    console.log('Data submitted successfully:', response.data);
+                    console.log(values.matricule);
+                })
+                .catch((error) => {
+                    console.error('Error submitting data:', error);
+                    // Handle any error conditions here
+                })
+                .finally(() => {
+                    setSubmitting(false);
+                    navigation.push('Etudiant')
+                });
+            }}
+        >
             {
                 ({handleChange, handleSubmit, errors, setFieldTouched, touched}) => (
                     <>
@@ -84,9 +81,7 @@ const UpdateEtudiant = ({item, navigation, route}) => {
                             
                         />
                         <ErrorMessage visible={touched.bourse}>{errors.bourse}</ErrorMessage>
-                      
                         
-                       
                        {/* <AppPicker onChangeText={handleChange('categorie')}  placeholder={'Catégories'} nameIcon='email' categories={categories} /> */}
 
                         <AppButton onPress={handleSubmit}>Update</AppButton>
@@ -96,8 +91,7 @@ const UpdateEtudiant = ({item, navigation, route}) => {
             }
         </Formik>
     </Screen>
-         
-  )
+)
 }
 
 const styles = StyleSheet.create({
